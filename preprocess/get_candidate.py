@@ -15,10 +15,12 @@ from cytoolz import curry
 from pyrouge.utils import log
 from pyrouge import Rouge155
 
-from transformers import BertTokenizer, RobertaTokenizer
+from transformers import BertTokenizer
+from importlib.machinery import SourceFileLoader
 
 MAX_LEN = 512
 
+cache_dir='./cache'
 _ROUGE_PATH = '/path/to/RELEASE-1.5.5'
 temp_path = './temp' # path to store some temporary files
 
@@ -164,10 +166,10 @@ def get_candidates_mp(args):
     
     # choose tokenizer
     if args.tokenizer == 'bert':
-        tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        tokenizer = BertTokenizer.from_pretrained('FPTAI/vibert-base-cased')
         cls, sep = '[CLS]', '[SEP]'
     else:
-        tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
+        tokenizer = SourceFileLoader("envibert.tokenizer", os.path.join(cache_dir,'envibert_tokenizer.py')).load_module().RobertaTokenizer(cache_dir)
         cls, sep = '<s>', '</s>'
     sep_id = tokenizer.encode(sep, add_special_tokens=False)
 
