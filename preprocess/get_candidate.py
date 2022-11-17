@@ -15,8 +15,8 @@ from cytoolz import curry
 from pyrouge.utils import log
 from pyrouge import Rouge155
 
-from transformers import BertTokenizer
-from importlib.machinery import SourceFileLoader
+from transformers import BertTokenizer, RobertaTokenizer
+
 
 MAX_LEN = 512
 
@@ -169,7 +169,7 @@ def get_candidates_mp(args):
         tokenizer = BertTokenizer.from_pretrained('FPTAI/vibert-base-cased')
         cls, sep = '[CLS]', '[SEP]'
     else:
-        tokenizer = SourceFileLoader("envibert.tokenizer", os.path.join(cache_dir,'envibert_tokenizer.py')).load_module().RobertaTokenizer(cache_dir)
+        tokenizer = RobertaTokenizer.from_pretrained("vinai/phobert-base")
         cls, sep = '<s>', '</s>'
     sep_id = tokenizer.encode(sep, add_special_tokens=False)
 
