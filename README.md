@@ -11,7 +11,7 @@ Code for ACL 2020 paper: *[Extractive Summarization as Text Matching](https://ar
 - [rouge](https://github.com/pltrdy/rouge) 1.0.0
 	- Used in  the validation phase.
 - [transformers](https://github.com/huggingface/transformers) 2.5.1
-
+- [bert-extractive-summarizer](https://github.com/dmmiller612/lecture-summarizer) 0.10.1
 	
 All code only supports running on Linux.
 
