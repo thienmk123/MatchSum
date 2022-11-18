@@ -20,8 +20,7 @@ from transformers import BertTokenizer, RobertaTokenizer
 
 MAX_LEN = 512
 
-cache_dir='./cache'
-_ROUGE_PATH = '/path/to/RELEASE-1.5.5'
+_ROUGE_PATH = 'pythonrouge/pythonrouge/RELEASE-1.5.5'
 temp_path = './temp' # path to store some temporary files
 
 original_data, sent_ids = [], []
